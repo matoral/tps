@@ -1,3 +1,7 @@
+
+import java.io.File;
+import javax.swing.JFileChooser;
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -8,6 +12,7 @@
  * @author mike
  */
 public class Frame extends javax.swing.JFrame {
+    File f;
 
     /**
      * Creates new form Frame
@@ -26,30 +31,38 @@ public class Frame extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        texto1 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        caja1 = new javax.swing.JTextArea();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        caja2 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Archivo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTextField1.setText("//");
+        texto1.setEditable(false);
+        texto1.setText("//");
 
         jButton2.setText("O.K.");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        caja1.setColumns(20);
+        caja1.setEditable(false);
+        caja1.setRows(5);
+        jScrollPane1.setViewportView(caja1);
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        caja2.setColumns(20);
+        caja2.setEditable(false);
+        caja2.setRows(5);
+        jScrollPane2.setViewportView(caja2);
 
         jLabel1.setText("Archivo de salida");
 
@@ -65,7 +78,7 @@ public class Frame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1))
+                        .addComponent(texto1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -86,7 +99,7 @@ public class Frame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1))
+                    .addComponent(texto1))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -101,6 +114,21 @@ public class Frame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser abrir = new JFileChooser();
+        int status = abrir.showOpenDialog(abrir);
+        if(status==JFileChooser.APPROVE_OPTION){
+            if(abrir.getName().contains(".asm")||abrir.getName().contains(".ASM")){
+                f= abrir.getSelectedFile();
+            }
+            
+        }
+        else if(status==JFileChooser.CANCEL_OPTION){
+            caja2.setText("Extension de Archivo Erronea");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -144,14 +172,14 @@ public class Frame extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea caja1;
+    private javax.swing.JTextArea caja2;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField texto1;
     // End of variables declaration//GEN-END:variables
 }
